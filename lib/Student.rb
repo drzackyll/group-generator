@@ -7,7 +7,7 @@ attr_reader :name, :course
 
 def initialize(name:)
   @name = name
-  @student_group_history = []
+  @student_group_history = {}
   @@all << self
 
 end
@@ -21,12 +21,21 @@ end
 #   @edit_group_history
 # end
 
-def edit_group_history
-  edited_history = @student_group_history
-  ## Iterates to get student histories --we need in order to subrtact the student from their own history
-  # group1.shuffles.each {|array| array.each {|new_group| new_group.student_group_history.each {|object| object.each {|name| p name.name}}}}
 
-end
+def update_group_history
+  my_group = shuffles.select {|group_of_studs| group_of_studs.include?(self)}
+  #change shuffles to changed_array method once we've checked people and rearranged groups
+  my_group.each do |student|
+    who_to_group.each {|person| person.student_group_history[student] += 1}
+  end 
+end 
+
+# def edit_group_history
+#   edited_history = @student_group_history
+#   ## Iterates to get student histories --we need in order to subrtact the student from their own history
+#   # group1.shuffles.each {|array| array.each {|new_group| new_group.student_group_history.each {|object| object.each {|name| p name.name}}}}
+
+# end
 
 
 

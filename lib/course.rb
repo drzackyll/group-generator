@@ -1,13 +1,13 @@
 require 'Pry'
 class Course
 
-attr_accessor :student_names, :all_my_students, :all_my_teachers, :student_id_name_hash, :student_objects
+attr_accessor :student_names, :student_id_name_hash, :student_objects, :reset_students
 attr_reader :name, :instructors
 
 @@all = []
   def initialize(name:, students:)
     @name = name
-    #web or ios
+    #web or ios 
     #@students = students
     @students = students
     i = 0
@@ -16,9 +16,17 @@ attr_reader :name, :instructors
     @student_objects = students.map {|student| Student.new(name: student)}
     student_objects.map {|student| student.course = self}
     #binding.pry
+    self.reset_students
     @@all << self
     #collects all the flatiron courses ever
     #@instructors = instructors
+  end
+
+  def reset_students
+    array_of_students = student_objects.each_with_object([]) {|student, array| array << student.name} 
+    array_of_students.each do |student_name|
+      student_objects.each {|one_student| one_student.student_group_history[student_name] = 0}
+    end 
   end
 
 

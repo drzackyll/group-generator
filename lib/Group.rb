@@ -22,20 +22,26 @@ end
 def shuffles
   array_of_groups = []
   random_students = who_to_group.shuffle #random_students = who_to_group.shuffle
-  random_student_groups = random_students.each_slice(@number_of_students) {|x| array_of_groups << x }
+  random_student_groups = random_students.each_slice(@number_of_students.to_i) {|x| array_of_groups << x }
   array_of_groups
 end
 
 def worked_together
-  previous_groups = []
-  shuffles.each do |sub_group|
-    check_group = sub_group
-    sub_group.each do |student_object|
-      previous_groups << student_object.student_group_history & check_group
-    end
-  end
-  previous_groups
-end
+  my_group = shuffles.select {|group_of_studs| group_of_studs.include?(self)}
+
+end 
+
+
+# def worked_together
+#   previous_groups = []
+#   shuffles.each do |sub_group|
+#     check_group = sub_group
+#     sub_group.each do |student_object|
+#       previous_groups << student_object.student_group_history & check_group
+#     end
+#   end
+#   previous_groups
+# end
 
 def re_shuffles
 
@@ -57,6 +63,8 @@ def add_to_student_history
     end
   end
 end
+
+#make a hash of student.name => times.worked_together # 
 
 # def add_to_student_history
 #   self.shuffles.each do |sub_group|
