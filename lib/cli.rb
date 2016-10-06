@@ -25,22 +25,36 @@ attr_reader :group_instance
 def get_course_name 
   course_name = ""
   puts "What course are you working for?"
-  course_name = gets.chomp
+  course_name = gets
 end 
 
 def get_students_array
   students_array = []
   puts "Please provide a formatted array of all students"
   students_array << gets
+  return students_array
 end 
 
 def make_a_course
-  classroom = Course.new(name: get_course_name, students: get_students_array)
-  classroom
+  classroom = Course.new
+  classroom.name = get_course_name
+  classroom.students = get_students_array
+  return classroom
+end 
+
+def populate_course
+  doing = make_a_course.studentify
+  #doing.course_the_students
+  #doing.student_objects
+  binding.pry
+  return doing
 end 
 
 def see_my_students
-  make_a_course.student_objects.each {|student| print "#{student.name}"}
+  populate_course.studentify.each {|student| print "#{student}" 
+  print "#{student.name}"
+  print "#{student.course}"}
+  binding.pry
 end 
 
 
@@ -54,7 +68,9 @@ def get_group_size
 end 
 
 def make_group_instance
-  group_instance = Group.new(group_size: get_group_size, course: make_a_course)  
+  group_instance = Group.new
+  group_instance.group_size = get_group_size
+  group_instance.course = populate_course
   return group_instance
 end 
 
@@ -74,6 +90,7 @@ end
 def shuffle_runner
    take_all_inputs.random_student_groups
   #binding.pry 
+
 end
 
 # def look_at_shuffle
@@ -88,10 +105,9 @@ end
 # end 
 
 def run 
-  p shuffle_runner
+  shuffle_runner
   #binding.pry
 end 
-
 end 
 
 

@@ -9,14 +9,14 @@ attr_accessor :group_size, :course, :who_to_group, :first_shuffle, :random_stude
 # @@group_history_3 = []
 # @@group_history_more = []
 
-def initialize(group_size:, course:)
+def initialize()
   @group_size = group_size
   @course = course
   @@all << self
 end
 
 def who_to_group
-  @course.student_objects # USE THIS INSTEAD
+  @course.studentify # USE THIS INSTEAD
 end
 
 def first_shuffle
@@ -28,6 +28,7 @@ end
 def random_student_groups
     random_student_groups = []
     first_shuffle.each_slice(@group_size) {|x| random_student_groups<< x}
+    #binding.pry
     random_student_groups
 end 
 
