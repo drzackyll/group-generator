@@ -46,15 +46,16 @@ def populate_course
   doing = make_a_course.studentify
   #doing.course_the_students
   #doing.student_objects
-  binding.pry
+  #binding.pry
   return doing
 end 
 
 def see_my_students
-  populate_course.studentify.each {|student| print "#{student}" 
+  binding.pry 
+  populate_course.each {|student| print "#{student}" 
   print "#{student.name}"
   print "#{student.course}"}
-  binding.pry
+  #binding.pry
 end 
 
 
@@ -88,8 +89,9 @@ end
 
 
 def shuffle_runner
-   take_all_inputs.random_student_groups
+   #take_all_inputs.random_student_groups
   #binding.pry 
+  see_my_students
 
 end
 

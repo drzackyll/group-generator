@@ -16,7 +16,8 @@ def initialize()
 end
 
 def who_to_group
-  @course.studentify # USE THIS INSTEAD
+  @course.studentify
+   # USE THIS INSTEAD
 end
 
 def first_shuffle
